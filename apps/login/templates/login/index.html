@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Login Registration</title>
+        {% load staticfiles %}
+        <link rel="stylesheet" href="{% static 'login/css/index.css' %}" media="screen">
+    </head>
+    <body>
+        <h1>Welcome!</h1>
+        <form action='/register' method="post" id="register">
+            <h2>Register</h2>
+            {% for message in messages %}
+                <p class='error'>{{message}}</p>
+            {% endfor %}
+            {% csrf_token %}
+            <p>Name:<input type="text" name="name"></p>
+            <p>Username:<input type="text" name="username"></p>
+            <p>Password:<input type="password" name="pass"></p>
+            <p>*Password should be at least 8 characters</p>
+            <p>Password Confirm:<input type="password" name="pass2"></p>
+            <p>Date Hired <input type="date" name="datehired"></p>
+            <input type="submit" name="submit" value="Register">
+        </form>
+        <form action="/login" method="post" class="login">
+            <h2>Login</h2>
+            {% csrf_token %}
+            <p>Username:<input type="text" name="username"></p>
+            <p>Password:<input type="password" name="pass"></p>
+            <input type="submit" name="submit" value="login">
+        </form>
+    </body>
+</html>
